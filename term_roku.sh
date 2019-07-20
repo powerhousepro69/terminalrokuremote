@@ -9,7 +9,7 @@ do
     cat<<EOF
  _______________________
 |                       |
-|   Bash Roku Remote    |
+|  Teminal Roku Remote  |
 |_______________________|
 |       |       |       |
 |   7   |   8   |   9   |
