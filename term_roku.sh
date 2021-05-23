@@ -1,32 +1,27 @@
 #!/bin/bash
-# Requirements... You must have curl installed for this script to work
-# ............... make sure you set the execute bit on file.    chmod +x term_roku.sh
+# Dependencies... You must have  curl  installed for this script to work
+# ............... make sure you set the execute bit on file.    
+# ............... to set execute bit type    chmod +x term_roku.sh
 # ............... when starting term_roku.sh you have to include the IP address of your Roku.
-# ............... to run    ./term_roku.sh rokuIP 
+# ............... to run (if in the directory of the script)   ./term_roku.sh rokuIP
+# ............... if the script is in the path   rokutv.sh rokuIP
+
+
+# roku
+
 while :
 do
-    clear
+#    clear
     cat<<EOF
- _______________________
-|                       |
-| Teminal  Roku Remote  |
-|_______________________|
-|       |       |       |
-|   7   |   8   |   9   |
-|  Home |   Up  |  Back |
-|_______|_______|_______|
-|       |       |       |
-|   4   |   5   |   6   |
-|  Left |   Ok  | Right |
-|_______|_______|_______|
-|       |       |       |
-|   1   |   2   |   3   |
-|   RW  |  Down |   FF  |
-|_______|_______|_______|
-|       |       |       |
-|   X   |   0   |   -   |
-|  Exit |  Play |  bk40 |
-|_______|_______|_______|
+ on-p off-P  - vDN    + vUP
+ ===========================
+| 7 home | 8 UP   | 9 back  |
+|========|========|=========|
+| 4 LEFT | 5 OK   | 6 RIGHT |
+|========|========|=========|
+| 1 rw   | 2 DOWN | 3 ff    |
+ ========|========|=========
+  q quit   0 Play   * optns
 EOF
     read -n1 -s
     case "$REPLY" in
@@ -40,9 +35,14 @@ EOF
     "8")  curl -d "" "http://$1:8060/keypress/up";;
     "9")  curl -d "" "http://$1:8060/keypress/back";;
     "0")  curl -d "" "http://$1:8060/keypress/play";;
-    "-")  curl -d "" "http://$1:8060/keypress/InstantReplay";;
-    "X")  exit                      ;;
-    "x")  echo "case sensitive!!"   ;; 
+#   ".")  curl -d "" "http://$1:8060/keypress/InstantReplay";;
+    "-")  curl -d "" "http://$1:8060/keypress/volumedown";;
+    "+")  curl -d "" "http://$1:8060/keypress/volumeup";;
+    "P")  curl -d "" "http://$1:8060/keypress/poweroff";;
+    "p")  curl -d "" "http://$1:8060/keypress/poweron";;
+    "*")  curl -d "" "http://$1:8060/keypress/info";;	    
+    "q")  exit                      ;;
+    "Q")  echo "case sensitive!!"   ;;
      * )  echo "invalid option"     ;;
     esac
     sleep .05
