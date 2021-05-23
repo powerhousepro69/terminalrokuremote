@@ -11,7 +11,7 @@
 
 while :
 do
-#    clear
+    clear
     cat<<EOF
  on-p off-P  - vDN    + vUP
  ===========================
